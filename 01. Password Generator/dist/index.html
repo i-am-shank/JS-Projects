@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <!-- Linking Tailwind CSS -->
+    
+    <!-- Linking Externa CSS -->
+    
+  <link rel="stylesheet" href="/assets/index-ca48d63f.css">
+</head>
+<body>
+    <!-- wrapper -->
+    <div class="wrapper overflow-x-hidden">
+        <!-- container -->
+        <div class="container">
+            <h1 class="uppercase font-bold">
+                Password Generator
+            </h1>
+    
+            <!-- Display box (password output) -->
+            <div class="display-container">
+                <!-- Password output -->
+                <input readonly placeholder="Password" class="display" data-passwordDisplay>
+                   <!-- data-passwordDisplay => custom-attribute of above <input> tag -->
+    
+                <!-- Copy Button -->
+                <button onclick="copyPassword()" data-copy class="copy-btn">
+                    <span data-copyMsg class="copy-msg"></span>
+                    <img src="/assets/copy-88fb2557.svg" alt="copy" width="23" height="23">
+                </button>
+            </div>
+    
+            <!-- Input Container -->
+            <div class="input-container">
+                <!-- Box specifying Password length -->
+                <div class="length-container">
+                    <h2 class="">
+                        Password Length
+                    </h2>
+                    <!-- password length -->
+                    <p password-length-text>
+                        0
+                    </p>
+                </div>
+    
+                <!-- Length specifying slider -->
+                <input type="range" min="1" max="20" class="slider" step="1" password-length-slider>
+                </input>
+    
+                <!-- 4 checkboxes -->
+                <div class="checkboxes">
+                    <!-- Checkbox 1 -->
+                    <div class="checkbox-div">
+                        <input type="checkbox" id="uppercase" class="checkbox">
+                        <label for="uppercase" class="checkbox-label">
+                            Include Uppercase letters
+                        </label>
+                    </div>
+                    <!-- Checkbox 2 -->
+                    <div class="checkbox-div">
+                        <input type="checkbox" id="lowercase" class="checkbox">
+                        <label for="lowercase" class="checkbox-label">
+                            Include Lowercase letters
+                        </label>
+                    </div>
+                    <!-- Checkbox 3 -->
+                    <div class="checkbox-div">
+                        <input type="checkbox" id="numbers" class="checkbox">
+                        <label for="numbers" class="checkbox-label">
+                            Include Numbers
+                        </label>
+                    </div>
+                    <!-- Checkbox 4 -->
+                    <div class="checkbox-div">
+                        <input type="checkbox" id="symbols" class="checkbox">
+                        <label for="symbols" class="checkbox-label">
+                            Include Symbols
+                        </label>
+                    </div>
+                </div>
+    
+                <!-- Password strength -->
+                <div class="strength-container">
+                    <p>
+                        Strength
+                    </p>
+                    <!-- Visual representation -->
+                    <div class="indicator" data-indicator>
+                    </div>
+                </div>
+    
+                <!-- Generate Password Button -->
+                <button class="generate-password" generate-btn>
+                    Generate Password
+                </button>
+            </div>
+        </div>
+    
+        <!-- Linking JS file -->
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>
