@@ -89,6 +89,7 @@
     2. Loading Screen
     3. User Info. container
     4. Search Form
+    5. Error Screen
 */
 
 
@@ -309,4 +310,24 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+}
+
+
+
+/* 5. Error Screen -------------------------------------- */
+
+.error-screen{
+    display: none;
+    /* Above line hides this section --> display: none; */
+    max-width: 550px;
+    width: 90%;
+}
+
+.error-screen.active{
+    display: flex;
+}
+
+.error-screen img{
+    max-width: 300px;
+    width: 100%;
 }

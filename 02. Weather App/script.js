@@ -29,6 +29,7 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
+const errorScreen = document.querySelector(".error-screen");
 
 const grantAccessButton = document.querySelector("[data-grantAccess]");
 
@@ -124,18 +125,34 @@ async function fetchUserWeatherInfo(coordinates) {
     try{
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
         const data = await response.json();
-        // Data has arrived --> hide loading-screen
-        loadingScreen.classList.remove("active");
-        // Start showing user-info container
-        userInfoContainer.classList.add("active");
-        // Render weather-info to user-info
-        renderWeatherInfo(data);
+        let cityName = data?.name;
+        if(cityName === undefined) { // invalid search
+            // Remove loading screen
+            loadingScreen.classList.remove("active");
+            userInfoContainer.classList.remove("active");
+            // Keep Error Screen hidden (only 1 case to show this)
+            errorScreen.classList.add("active");
+        }
+        else {
+            // Remove loading screen now
+            loadingScreen.classList.remove("active");
+            // Keep Error Screen hidden (only 1 case to show this)
+            errorScreen.classList.remove("active");
+            // Start showing user-info container
+            userInfoContainer.classList.add("active");
+            // Show these data on UI
+            renderWeatherInfo(data);
+            // console.log(data);
+        }
     }
     catch(err) {
-        // On error too.. hide loading screen
+        // On error too.. hide loading screen & user-weather info
         loadingScreen.classList.remove("active");
+        userInfoContainer.classList.remove("active");
+        // Keep Error Screen hidden (only 1 case to show this)
+        errorScreen.classList.remove("active");
         // Show an error message on screen
-
+        errorScreen.classList.add("active");
         // For now, printing msg on console
         console.log("Error in lat-lon API call");
     }
@@ -249,6 +266,8 @@ async function fetchSearchWeatherInfo(city) {
     loadingScreen.classList.add("active");
     userInfoContainer.classList.remove("active");
     grantAccessContainer.classList.remove("active");
+    // Keep Error Screen hidden (only 1 case to show this)
+    errorScreen.classList.remove("active");
     try{
         // API call :-
         const apiCallLink = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
@@ -257,19 +276,33 @@ async function fetchSearchWeatherInfo(city) {
         // console.log(response);
         const data = await response.json();
         // console.log(data);
-        // Remove loading screen now
-        loadingScreen.classList.remove("active");
-        // Start showing user-info container
-        userInfoContainer.classList.add("active");
-        // Show these data on UI
-        renderWeatherInfo(data);
-        // console.log(data);
+        let cityName = data?.name;
+        if(cityName === undefined) { // invalid search
+            // Remove loading screen
+            loadingScreen.classList.remove("active");
+            userInfoContainer.classList.remove("active");
+            // Keep Error Screen hidden (only 1 case to show this)
+            errorScreen.classList.add("active");
+        }
+        else {
+            // Remove loading screen now
+            loadingScreen.classList.remove("active");
+            // Keep Error Screen hidden (only 1 case to show this)
+            errorScreen.classList.remove("active");
+            // Start showing user-info container
+            userInfoContainer.classList.add("active");
+            // Show these data on UI
+            renderWeatherInfo(data);
+            // console.log(data);
+        }
     }
     catch(err) {
         // Remove loading screen
         loadingScreen.classList.remove("active");
+        userInfoContainer.classList.remove("active");
         // Print an error message on UI.
-
+        // Keep Error Screen hidden (only 1 case to show this)
+        errorScreen.classList.add("active");
         // For now, printing it on console :-
         console.log("Error in City-API call");
     }
