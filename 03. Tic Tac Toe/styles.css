@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Google fonts font :- */
+    font-family: 'Poppins', 'sans-serif';
+    user-select: none;
+}
+
+
+/* Global variables ------------------------ */
+:root{
+    --bg-gray: rgba(255, 255, 255, 0.15);
+    --border-gray: rgba(255, 255, 255, 0.25);
+    --bg-green: rgba(0, 255, 0, 0.3);
+}
+
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(./images/gradient-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    /* Place items at vertically center */
+    place-items: center;
+}
+
+
+/* Current Player label (at top) -------------- */
+
+.game-info{
+    color: white;
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-gray);
+    border-radius: 1rem;
+    border: 1px solid var(--border-gray);
+    padding: 0.5rem 3rem;
+    text-align: center;
+}
+
+
+/* Game Container ------------------------- */
+
+.tic-tac-toe{
+    width: 90%;
+    max-width: 20rem;
+    background-color: var(--bg-gray);
+    border-radius: 1rem;
+    border: 1px solid var(--border-gray);
+    padding: 2rem;
+    display: grid;
+    /* No. of columns in grid (all cards split among these */
+    /* fr is relative unit --> equal distribution of space among cards */
+    grid-template-columns: repeat(3, 1fr);
+    /* To make grid-shape --> square */
+    /*    (can also set width, height for this) */
+    aspect-ratio: 1/1;
+}
+
+
+/* Individual box (9 boxes) ------------------ */
+
+.box{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    /* Place content at center :- */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+}
+
+
+/* Adding borders to boxes :- ---------------- */
+
+.box1, .box2, .box4, .box5 {
+    /* Right & Bottom borders */
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.box3, .box6 {
+    /* Bottom border */
+    border-bottom: 2px solid white;
+}
+
+.box7, .box8 {
+    /* Right border */
+    border-right: 2px solid white;
+}
+
+
+/* New Game button :- ------------------------ */
+
+.btn{
+    color: white;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-gray);
+    border: 1px solid var(--border-gray);
+    border-radius: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    /* By default, hidden */
+    display: none;
+}
+
+/* button will be visible after game ends. */
+.btn.active{
+    display: flex;
+}
+
+
+/* Winner row  -->  Green background ---------- */
+
+.win{
+    background-color: var(--bg-green);
+}
