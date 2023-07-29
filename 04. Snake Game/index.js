@@ -208,7 +208,10 @@ function init() {
                 snake.cells.pop();
             }
             snake.createSnake();
-            // also reset the direction to "right"
+            // Also reset the score
+            score = 0;
+            score1.innerText = score;
+            // Also reset the direction to "right"
             snake.direction = "right";
             // Then execute following setInterval for game-looping
             gameVar = setInterval(gameLoop, 100);
