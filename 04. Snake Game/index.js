@@ -2,10 +2,13 @@
 
 // Setting canvas-dimensions
 var canvas = document.getElementById("mycanvas");
-var height = document.height,
-    width = document.width;
-var W = (canvas.width = 750);
-var H = (canvas.height = 650);
+
+window.onload = window.onresize = function () {
+    canvas.width = window.innerWidth * 0.8;
+    canvas.height = window.innerHeight * 0.8;
+};
+var W = canvas.width;
+var H = canvas.height;
 var cellSize = 37;
 // Creating canvas.context
 var pen = canvas.getContext("2d");
